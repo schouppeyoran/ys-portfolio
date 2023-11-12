@@ -137,14 +137,8 @@ const Backdrop: React.FC<BackdropProps> = ({ children }) => {
     };
   }, []);
   
-  // TO DO: have the particles have a 50% chance to randomly change their destination mid-animation, limit them to doing this only 2 times
-  // TO DO: have the particles be a random size between a min and max value
-  // TO DO: have the particles be a random color
-  // TO DO: have the particles have a random opacity between a min and max value
-  // TO DO: have the particles have a trailing css effect that looks like the fluid simulation thing
-  // TO DO: slow down the animation of the particles
-  // TO DO: add a blur to the particles so they're really just moving gradients
-  // TO DO: add a random swerves to the particles so they're not just moving in a straight line
+  // TO DO: randomize the movements of the animation somehow
+  // TO DO: add a trailing effect to the particles so they look like ripples in water or something
 
   return (
     <main className='flex flex-col items-center min-h-[100vh] overflow-hidden'>
