@@ -18,6 +18,31 @@ const Backdrop: React.FC<BackdropProps> = ({ children }) => {
       'rounded-full',
       'bg-white'
     );
+    // Set random size
+    const size = `${Math.random() * 60}px`;
+    particle.style.width = size;
+    particle.style.height = size;
+  
+    // Set random color
+    const colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple', 'orange'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    particle.style.backgroundColor = color;
+  
+    // Set random opacity
+    const opacity = Math.random();
+    particle.style.opacity = opacity.toString();
+  
+    // Set random position and direction
+    particle.style.left = `${Math.random() * 100}vw`;
+    particle.style.top = `${Math.random() * 100}vh`;
+    particle.style.setProperty('--direction', Math.random() * 360 + 'deg');
+  
+    // Set random duration for the animation to make it slower or faster
+    const duration = Math.random() * 3000 + 2000;
+    particle.style.setProperty('--duration', `${duration}ms`);
+  
+    // Add blur
+    particle.style.filter = 'blur(2px)';
     // first, determine if the particle is going to come from the top, right, bottom, or left
     // give it a starting position anywhere along the side, and 100px outside of the viewport
     // then, determine to what other side it will go to, which can't be the same side
@@ -87,7 +112,7 @@ const Backdrop: React.FC<BackdropProps> = ({ children }) => {
         },
       ],
       {
-        duration: Math.random() * 2000 + 1000,
+        duration: Math.random() * 5000 + 3000,
         easing: 'ease-in-out',
       }
     );
@@ -101,13 +126,14 @@ const Backdrop: React.FC<BackdropProps> = ({ children }) => {
   // useEffect hook to generate particles anywhere between every 600ms to 2000ms
   // use a minimumInterval and maximumInterval variable to make the code more readable and easier to change
   useEffect(() => {
-    const minimumInterval = 200;
-    const maximumInterval = 400;
-    const interval = Math.random() * (maximumInterval - minimumInterval) + minimumInterval;
-    const timeout = setTimeout(() => {
+    const interval = setInterval(() => {
+      console.log('Generating particle');
       generateParticle();
-      clearTimeout(timeout);
-    }, interval);
+    }, 500);
+    return () => {
+      console.log('Clearing interval');
+      clearInterval(interval);
+    };
   }, []);
   
   // TO DO: have the particles have a 50% chance to randomly change their destination mid-animation, limit them to doing this only 2 times
