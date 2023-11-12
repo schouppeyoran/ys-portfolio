@@ -100,7 +100,7 @@ const Backdrop: React.FC<BackdropProps> = ({ children }) => {
       particle.style.top = `${start.y}px`;
     }
     document.body.appendChild(particle);
-    particle.animate(
+    const animation = particle.animate(
       [
         {
           left: start?.x ? `${start.x}px` : '0px',
@@ -116,9 +116,10 @@ const Backdrop: React.FC<BackdropProps> = ({ children }) => {
         easing: 'ease-in-out',
       }
     );
-    particle.addEventListener('animationend', () => {
+    
+    animation.onfinish = () => {
       particle.remove();
-    });
+    };
 
     
   };
