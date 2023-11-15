@@ -5,10 +5,6 @@ export default function Home() {
   return (
     <Backdrop>
       <Hero/>
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
     </Backdrop>
   )
 }
