@@ -56,7 +56,7 @@ export function startFluidSimulation(canvas) {
         FREQ_MULTI:0.1,
     }
     
-    var timer = setInterval(randomSplat, 3500);
+    var timer = setInterval(randomSplat, 8000);
     var _runRandom = true;
     var _isSleep = false;
     function randomSplat()
@@ -132,7 +132,7 @@ export function startFluidSimulation(canvas) {
         return c;
     }
     
-    let _randomSplats = false;
+    let _randomSplats = true;
     let _audioReact = false;
     let _bgImageChk = false;
     let _bgImagePath = "";
@@ -1554,26 +1554,32 @@ export function startFluidSimulation(canvas) {
       return false;
     }
     
-    canvas.addEventListener('mousemove', e => {
+    // canvas.addEventListener('mousemove', e => {
     
-        if(checkLastMove()){
-          let posX = scaleByPixelRatio(e.offsetX);
-          let posY = scaleByPixelRatio(e.offsetY);
-          let pointer = pointers.find(p => p.id == -1);
-          if (pointer == null)
-              pointer = new pointerPrototype();
-          updatePointerDownData(pointer, -1, posX, posY);
-        }
+    //     if(checkLastMove()){
+    //       let posX = scaleByPixelRatio(e.offsetX);
+    //       let posY = scaleByPixelRatio(e.offsetY);
+    //       let pointer = pointers.find(p => p.id == -1);
+    //       if (pointer == null)
+    //           pointer = new pointerPrototype();
+    //       updatePointerDownData(pointer, -1, posX, posY);
+    //     }
     
-        let pointer = pointers[0];
-        if (!pointer.down) return;
-        let posX = scaleByPixelRatio(e.offsetX);
-        let posY = scaleByPixelRatio(e.offsetY);
-        updatePointerMoveData(pointer, posX, posY);
-    });
+    //     let pointer = pointers[0];
+    //     if (!pointer.down) return;
+    //     let posX = scaleByPixelRatio(e.offsetX);
+    //     let posY = scaleByPixelRatio(e.offsetY);
+    //     updatePointerMoveData(pointer, posX, posY);
+    // });
     
-    window.addEventListener('mouseup', () => {
-        updatePointerUpData(pointers[0]);
+    // window.addEventListener('mouseup', () => {
+    //     updatePointerUpData(pointers[0]);
+    // });
+
+    // event listener that calls randomSplat everytime the user clicks
+    canvas.addEventListener('click', e => {
+        
+        randomSplat();
     });
     
     canvas.addEventListener('touchstart', e => {
