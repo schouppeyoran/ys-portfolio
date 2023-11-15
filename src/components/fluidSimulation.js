@@ -56,7 +56,7 @@ export function startFluidSimulation(canvas) {
         FREQ_MULTI:0.1,
     }
     
-    var timer = setInterval(randomSplat, 8000);
+    var timer = setInterval(randomSplat, 4000);
     var _runRandom = true;
     var _isSleep = false;
     function randomSplat()

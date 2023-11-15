@@ -18,7 +18,8 @@ const Backdrop: React.FC<BackdropProps> = ({ children }) => {
 
   return (
     <main className='flex flex-col items-center min-h-[100vh] overflow-hidden'>
-      <canvas ref={canvasRef} style={{ position: 'absolute', width: '100%', height: '100%' }} className='z-0'/>
+      <canvas ref={canvasRef} className='z-0 absolute w-[100%] h-[100%]'/>
+      <div className="z-1 absolute w-[100%] h-[100%] bg-woodsmoke opacity-70"/>
       {children}
     </main>
   );
