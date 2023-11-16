@@ -25,8 +25,8 @@ const Hero = () => {
         (mobileToggled ? secondH1ElementHeight : firstH1ElementHeight) + 4
       }px`
       togglerIndicator.current.style.transform = `translateX(${
-        mobileToggled ? '3px' : '-3px'
-      })`
+        mobileToggled ? firstH1ElementWidth + 3 : '-3'
+      }px)`
     }
   }, [mobileToggled])
 
@@ -47,19 +47,21 @@ const Hero = () => {
             onClick={() => setMobileToggled(!mobileToggled)}
           >
             <div
-              className={`bg-ironstone absolute z-1 rounded transition-all duration-300 ease-in-out ${
-                mobileToggled ? 'right-2' : 'left-2'
-              }`}
+              className={`bg-ironstone absolute z-1 rounded transition-all duration-300 ease-in-out`}
               ref={togglerIndicator}
             />
             <h1
-              className={` ${mobileToggled ? 'text-ironstone' : 'text-white'}`}
+              className={` ${
+                mobileToggled ? 'text-ironstone' : 'text-white'
+              } transition-all duration-300`}
               ref={h1Ref1}
             >
               Web
             </h1>
             <h1
-              className={` ${mobileToggled ? 'text-white' : 'text-ironstone'}`}
+              className={` ${
+                mobileToggled ? 'text-white' : 'text-ironstone'
+              } transition-all duration-300`}
               ref={h1Ref2}
             >
               Mobile
