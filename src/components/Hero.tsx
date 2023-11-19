@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react'
+import DriftCarousel from './DriftCarousel'
+import { DriftCarouselWebItems } from '@/config/DriftCarouselWebItems'
 
 const Hero = () => {
   // ----- TOGGLE BETWEEN WEB AND MOBILE LOGIC -----
@@ -31,7 +33,12 @@ const Hero = () => {
   }, [mobileToggled])
 
   return (
-    <section className="h-[100vh] w-[100vw] mb-8 flex flex-col items-center justify-center px-4 py-10">
+    <section
+      id="hero"
+      className="h-[100vh] w-[100vw] mb-8 flex flex-col items-center justify-center px-4 py-10"
+    >
+      <img src="../../public/assets/web1.png" alt="" />
+      <DriftCarousel dataset={DriftCarouselWebItems} height={'40vh'} />
       <div className="flex flex-row gap-2 text-4xl mb-3">
         <h1>Hi!</h1>
         <h1>My name is...</h1>
