@@ -1,67 +1,43 @@
-import React, { useEffect, useRef } from 'react'
+import React, { use, useEffect, useRef } from 'react'
 
 const DriftCarousel = ({ dataset, height }) => {
-  const topRowRef = useRef(null)
-  const bottomRowRef = useRef(null)
+  const driftContainerRef = useRef(null)
 
-  // Calculate the number of items needed to cover slightly more than the entire width of the screen.
-  const itemsPerRow = Math.ceil(window.innerWidth / 200) * 2
-
-  // Create two arrays with double this amount of items, alternating between the top and bottom rows.
-  const topRowItems = []
-  const bottomRowItems = []
-  for (let i = 0; i < itemsPerRow; i++) {
-    topRowItems.push(dataset[(2 * i) % dataset.length])
-    bottomRowItems.push(dataset[(2 * i + 1) % dataset.length])
-  }
-
-  const handleAnimationIteration = (rowItems, rowRef, offset) => {
-    const firstItem = rowItems.shift()
-    rowItems.push(
-      dataset[
-        (dataset.indexOf(firstItem) + itemsPerRow * 2 + offset) % dataset.length
-      ],
-    )
-    rowRef.current.style.animation = 'none'
-    setTimeout(() => {
-      rowRef.current.style.animation = ''
-    }, 0)
-  }
-
+  // render the first image in the dataset at position top: 0 and right: -100% and animate it to left: -100%, then unrender it
   useEffect(() => {
-    topRowRef.current.addEventListener('animationiteration', () =>
-      handleAnimationIteration(topRowItems, topRowRef, 0),
-    )
-    bottomRowRef.current.addEventListener('animationiteration', () =>
-      handleAnimationIteration(bottomRowItems, bottomRowRef, 1),
+    const driftContainer = driftContainerRef.current
+    const driftImage = document.createElement('img')
+    driftImage.src = dataset[0]
+    driftImage.style.position = 'absolute'
+    driftImage.style.top = '0'
+    driftImage.style.right = '0'
+    driftImage.style.left = 'auto'
+    driftImage.style.height = '50%'
+    driftImage.style.objectFit = 'cover'
+
+    const animation = driftImage.animate(
+      [{ transform: 'translateX(-180vw)' }],
+      {
+        duration: 10000,
+        iterations: 1,
+      },
     )
 
-    return () => {
-      topRowRef.current.removeEventListener('animationiteration', () =>
-        handleAnimationIteration(topRowItems, topRowRef, 0),
-      )
-      bottomRowRef.current.removeEventListener('animationiteration', () =>
-        handleAnimationIteration(bottomRowItems, bottomRowRef, 1),
-      )
+    // Add an event listener for the 'finish' event.
+    animation.onfinish = () => {
+      // Remove the image from the DOM.
+      driftContainer.removeChild(driftImage)
     }
+
+    driftContainer.appendChild(driftImage)
   }, [])
 
   return (
     <div
+      ref={driftContainerRef}
       style={{ height: height }}
-      className="flex flex-col w-[110%] wrap relative mb-12 gap-4 mt-[-10vh] items-center justify-center"
-    >
-      <div ref={topRowRef} className="flex h-[50%] animate-slide-right">
-        {topRowItems.map((item, index) => (
-          <img src={item} key={index} className="h-full object-contain" />
-        ))}
-      </div>
-      <div ref={bottomRowRef} className="flex h-[50%] animate-slide-left">
-        {bottomRowItems.map((item, index) => (
-          <img src={item} key={index} className="h-full object-contain" />
-        ))}
-      </div>
-    </div>
+      className="flex flex-col w-[160vw] wrap relative mb-12 gap-4 mt-[-10vh] items-center justify-center"
+    ></div>
   )
 }
 
