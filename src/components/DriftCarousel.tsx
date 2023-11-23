@@ -4,6 +4,7 @@ const DriftCarousel = ({ dataset, height }) => {
   const driftContainerRef = useRef(null)
   let index = 0
   let intervalId = null
+  const animationDuration = 10000 // 10 seconds
 
   const createAndAnimateImage = top => {
     const driftContainer = driftContainerRef.current
@@ -17,7 +18,11 @@ const DriftCarousel = ({ dataset, height }) => {
     driftImage.style.objectFit = 'cover'
 
     driftImage.onload = () => {
+      // Calculate the time when the image has moved 50% of its width.
       const imageWidth = driftImage.offsetWidth
+      const viewportWidth = window.innerWidth
+      const halfImageWidthTime =
+        (imageWidth / (viewportWidth + imageWidth)) * animationDuration
 
       // Clear the previous interval before setting up a new one.
       if (intervalId) {
@@ -26,13 +31,13 @@ const DriftCarousel = ({ dataset, height }) => {
 
       intervalId = setInterval(() => {
         createAndAnimateImage(index % 2 === 0 ? '0' : '50%')
-      }, imageWidth / 0.4) // Adjust this interval to match half the image width.
+      }, halfImageWidthTime / 2)
     }
 
     const animation = driftImage.animate(
       [{ transform: 'translateX(-180vw)' }],
       {
-        duration: 10000,
+        duration: animationDuration,
         iterations: 1,
       },
     )
