@@ -1,19 +1,33 @@
-import React, { use, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 const DriftCarousel = ({ dataset, height }) => {
   const driftContainerRef = useRef(null)
+  let index = 0
+  let intervalId = null
 
-  // render the first image in the dataset at position top: 0 and right: -100% and animate it to left: -100%, then unrender it
-  useEffect(() => {
+  const createAndAnimateImage = top => {
     const driftContainer = driftContainerRef.current
     const driftImage = document.createElement('img')
-    driftImage.src = dataset[0]
+    driftImage.src = dataset[index % dataset.length]
     driftImage.style.position = 'absolute'
-    driftImage.style.top = '0'
+    driftImage.style.top = top
     driftImage.style.right = '0'
     driftImage.style.left = 'auto'
     driftImage.style.height = '50%'
     driftImage.style.objectFit = 'cover'
+
+    driftImage.onload = () => {
+      const imageWidth = driftImage.offsetWidth
+
+      // Clear the previous interval before setting up a new one.
+      if (intervalId) {
+        clearInterval(intervalId)
+      }
+
+      intervalId = setInterval(() => {
+        createAndAnimateImage(index % 2 === 0 ? '0' : '50%')
+      }, imageWidth / 0.4) // Adjust this interval to match half the image width.
+    }
 
     const animation = driftImage.animate(
       [{ transform: 'translateX(-180vw)' }],
@@ -23,13 +37,21 @@ const DriftCarousel = ({ dataset, height }) => {
       },
     )
 
-    // Add an event listener for the 'finish' event.
     animation.onfinish = () => {
-      // Remove the image from the DOM.
       driftContainer.removeChild(driftImage)
     }
 
     driftContainer.appendChild(driftImage)
+
+    index++
+  }
+
+  useEffect(() => {
+    createAndAnimateImage(index % 2 === 0 ? '0' : '50%')
+
+    return () => {
+      clearInterval(intervalId)
+    }
   }, [])
 
   return (
