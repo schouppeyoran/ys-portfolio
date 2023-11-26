@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
 const DriftCarousel = ({ dataset, height }) => {
-  // animationDuration in ms
-  let animationDuration = 20000
   const containerRef = useRef(null)
 
   const renderImage = index => {
@@ -12,11 +10,15 @@ const DriftCarousel = ({ dataset, height }) => {
     img.className = 'h-[48%] object-contain absolute'
     img.style.top = '0'
     img.style.left = '100%'
-    img.style.transition = `all ${animationDuration}ms linear`
+    img.style.transition = 'all 20s linear'
 
     img.onload = () => {
       img.style.left = `-${img.offsetWidth + img.offsetWidth / 2}px`
     }
+
+    img.addEventListener('transitionend', () => {
+      img.remove()
+    })
 
     containerRef.current.appendChild(img)
   }
@@ -27,19 +29,27 @@ const DriftCarousel = ({ dataset, height }) => {
     img.alt = ''
     img.className = 'h-[48%] object-contain absolute'
     img.style.bottom = '0'
-    img.style.transition = `all ${animationDuration}ms linear`
+    img.style.transition = 'all 20s linear'
 
     img.onload = () => {
       img.style.left = `calc(100% + ${img.offsetWidth / 2}px)`
       img.style.left = `-${img.offsetWidth}px`
     }
 
+    img.addEventListener('transitionend', () => {
+      img.remove()
+    })
+
     containerRef.current.appendChild(img)
   }
 
   useEffect(() => {
-    renderImage(0)
-    renderStaggeredImage(1)
+    const timer = setTimeout(() => {
+      renderImage(0)
+      renderStaggeredImage(1)
+    }, 1000) // delay of 1 second
+
+    return () => clearTimeout(timer) // cleanup on unmount
   }, [])
 
   return (
