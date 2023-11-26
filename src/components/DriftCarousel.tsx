@@ -1,7 +1,18 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 const DriftCarousel = ({ dataset, height }) => {
   const containerRef = useRef(null)
+  const [index, setIndex] = useState(0)
+  const [imgWidth, setImgWidth] = useState(0)
+  const [gapSize, setGapSize] = useState(0)
+  const [animationDuration, setAnimationDuration] = useState(20000)
+
+  const calculateIntervalTime = viewportWidth => {
+    return (
+      (imgWidth + gapSize) *
+      (animationDuration / (2 * imgWidth + viewportWidth))
+    )
+  }
 
   const renderImage = index => {
     const img = document.createElement('img')
@@ -10,9 +21,11 @@ const DriftCarousel = ({ dataset, height }) => {
     img.className = 'h-[48%] object-contain absolute'
     img.style.top = '0'
     img.style.left = '100%'
-    img.style.transition = 'all 20s linear'
+    img.style.transition = `all ${animationDuration}ms linear`
 
     img.onload = () => {
+      setImgWidth(img.offsetWidth)
+      setGapSize(img.offsetWidth * 0.2)
       img.style.left = `-${img.offsetWidth + img.offsetWidth / 2}px`
     }
 
@@ -29,7 +42,7 @@ const DriftCarousel = ({ dataset, height }) => {
     img.alt = ''
     img.className = 'h-[48%] object-contain absolute'
     img.style.bottom = '0'
-    img.style.transition = 'all 20s linear'
+    img.style.transition = `all ${animationDuration}ms linear`
 
     img.onload = () => {
       img.style.left = `calc(100% + ${img.offsetWidth / 2}px)`
@@ -44,13 +57,20 @@ const DriftCarousel = ({ dataset, height }) => {
   }
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      renderImage(0)
-      renderStaggeredImage(1)
-    }, 1000) // delay of 1 second
+    renderImage(index)
+    renderStaggeredImage(index + 1)
+  }, [index])
 
-    return () => clearTimeout(timer) // cleanup on unmount
-  }, [])
+  useEffect(() => {
+    const viewportWidth = window.innerWidth
+    const interval = calculateIntervalTime(viewportWidth)
+
+    const timer = setInterval(() => {
+      setIndex((index + 2) % dataset.length)
+    }, interval)
+
+    return () => clearInterval(timer)
+  }, [index, imgWidth, gapSize])
 
   return (
     <div
