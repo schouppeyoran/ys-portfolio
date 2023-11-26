@@ -1,35 +1,53 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 const DriftCarousel = ({ dataset, height }) => {
-  const [test, setTest] = useState(true)
-  const imgRef = useRef(null)
+  // animationDuration in ms
+  let animationDuration = 20000
+  const containerRef = useRef(null)
+
+  const renderImage = index => {
+    const img = document.createElement('img')
+    img.src = dataset[index]
+    img.alt = ''
+    img.className = 'h-[48%] object-contain absolute'
+    img.style.top = '0'
+    img.style.left = '100%'
+    img.style.transition = `all ${animationDuration}ms linear`
+
+    img.onload = () => {
+      img.style.left = `-${img.offsetWidth + img.offsetWidth / 2}px`
+    }
+
+    containerRef.current.appendChild(img)
+  }
+
+  const renderStaggeredImage = index => {
+    const img = document.createElement('img')
+    img.src = dataset[index]
+    img.alt = ''
+    img.className = 'h-[48%] object-contain absolute'
+    img.style.bottom = '0'
+    img.style.transition = `all ${animationDuration}ms linear`
+
+    img.onload = () => {
+      img.style.left = `calc(100% + ${img.offsetWidth / 2}px)`
+      img.style.left = `-${img.offsetWidth}px`
+    }
+
+    containerRef.current.appendChild(img)
+  }
 
   useEffect(() => {
-    if (imgRef.current) {
-      imgRef.current.style.left = test
-        ? '100%'
-        : `-${imgRef.current.offsetWidth}px`
-    }
-  }, [test])
+    renderImage(0)
+    renderStaggeredImage(1)
+  }, [])
 
   return (
     <div
+      ref={containerRef}
       style={{ height: height }}
       className="flex flex-col w-[100vw] wrap relative mb-12 gap-4 mt-[-10vh] items-center justify-center"
-    >
-      <img
-        ref={imgRef}
-        src={dataset[0]}
-        alt=""
-        className="h-[50%] object-contain absolute"
-        style={{
-          top: 0,
-          bottom: 0,
-          transition: 'all 20s linear',
-        }}
-      />
-      <button onClick={() => setTest(!test)}>test</button>
-    </div>
+    ></div>
   )
 }
 
