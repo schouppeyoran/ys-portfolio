@@ -6,6 +6,7 @@ const DriftCarousel = ({ dataset, height }) => {
   const [imgWidth, setImgWidth] = useState(0)
   const [gapSize, setGapSize] = useState(0)
   const [animationDuration, setAnimationDuration] = useState(20000)
+  const [firstRender, setFirstRender] = useState(true)
 
   const calculateIntervalTime = viewportWidth => {
     return (

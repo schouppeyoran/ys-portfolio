@@ -26,6 +26,24 @@ h6 {
 }
 
 .driftcarousel img {
-  box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.75);
+  box-shadow: 0px 0px 20px 0px rgba(155, 43, 43, 0.75);
   border-radius: 2%;
+  animation: driftCarouselImg 5s infinite;
+}
+
+.driftcarousel img:nth-child(1),
+.driftcarousel img:nth-child(2) {
+  box-shadow: none;
+}
+
+@keyframes driftCarouselImg {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02) translateY(-2%);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

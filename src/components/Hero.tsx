@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import DriftCarousel from './DriftCarousel'
 import { DriftCarouselWebItems } from '@/config/DriftCarouselWebItems'
+import { DriftCarouselMobileItems } from '@/config/DriftCarouselMobileItems'
 
 const Hero = () => {
   // ----- TOGGLE BETWEEN WEB AND MOBILE LOGIC -----
@@ -37,7 +38,12 @@ const Hero = () => {
       id="hero"
       className="h-[100vh] w-[100vw] mb-8 flex flex-col items-center justify-center px-4 py-10"
     >
-      <DriftCarousel dataset={DriftCarouselWebItems} height={'40vh'} />
+      <DriftCarousel
+        dataset={
+          mobileToggled ? DriftCarouselMobileItems : DriftCarouselWebItems
+        }
+        height={'40vh'}
+      />
       <div className="flex flex-row gap-2 text-4xl mb-3">
         <h1>Hi!</h1>
         <h1>My name is...</h1>
