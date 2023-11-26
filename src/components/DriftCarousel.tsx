@@ -62,14 +62,16 @@ const DriftCarousel = ({ dataset, height }) => {
   }, [index])
 
   useEffect(() => {
-    const viewportWidth = window.innerWidth
-    const interval = calculateIntervalTime(viewportWidth)
+    if (imgWidth > 0 && gapSize > 0) {
+      const viewportWidth = window.innerWidth
+      const interval = calculateIntervalTime(viewportWidth)
 
-    const timer = setInterval(() => {
-      setIndex((index + 2) % dataset.length)
-    }, interval)
+      const timer = setInterval(() => {
+        setIndex((index + 2) % dataset.length)
+      }, interval)
 
-    return () => clearInterval(timer)
+      return () => clearInterval(timer)
+    }
   }, [index, imgWidth, gapSize])
 
   return (
