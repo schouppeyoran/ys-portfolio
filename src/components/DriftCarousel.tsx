@@ -56,7 +56,7 @@ const DriftCarousel = ({ dataset, height }) => {
     <div
       ref={containerRef}
       style={{ height: height }}
-      className="flex flex-col w-[100vw] wrap relative mb-12 gap-4 mt-[-10vh] items-center justify-center"
+      className="flex flex-col w-[100vw] wrap relative mb-12 gap-4 mt-[-10vh] items-center justify-center driftcarousel"
     ></div>
   )
 }

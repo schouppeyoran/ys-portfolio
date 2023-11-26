@@ -10,30 +10,22 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: #0C0D0F;
+  background: #0c0d0f;
   color: rgba(255, 255, 255, 0.6);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Bebas Neue', sans-serif;
   font-weight: 400;
   color: #fff;
 }
 
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  background-color: white;
-  animation-name: moveParticle;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-@keyframes moveParticle {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(calc(var(--direction) * 1vw), calc(var(--direction) * 1vh));
-  }
+.driftcarousel img {
+  box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.75);
+  border-radius: 2%;
 }
