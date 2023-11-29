@@ -3,14 +3,9 @@ import React, { useState, useEffect, useRef } from 'react'
 interface DriftCarouselProps {
   dataset: string[]
   height: string
-  children: React.ReactNode
 }
 
-const DriftCarousel: React.FC<DriftCarouselProps> = ({
-  dataset,
-  height,
-  children,
-}) => {
+const DriftCarousel: React.FC<DriftCarouselProps> = ({ dataset, height }) => {
   const containerRef = useRef(null)
   const [index, setIndex] = useState(0)
   const [imgWidth, setImgWidth] = useState(0)
@@ -93,9 +88,7 @@ const DriftCarousel: React.FC<DriftCarouselProps> = ({
       ref={containerRef}
       style={{ height: height }}
       className="flex flex-col w-[100vw] wrap relative mb-12 gap-4 mt-[-10vh] items-center justify-center driftcarousel"
-    >
-      {children}
-    </div>
+    ></div>
   )
 }
 
