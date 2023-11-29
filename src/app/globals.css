@@ -31,10 +31,10 @@ h6 {
   animation: driftCarouselImg 5s infinite;
 }
 
-.driftcarousel img:nth-child(1),
+/* .driftcarousel img:nth-child(1),
 .driftcarousel img:nth-child(2) {
   box-shadow: none;
-}
+} */
 
 @keyframes driftCarouselImg {
   0% {

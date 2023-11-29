@@ -1,21 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-const DriftCarousel = ({ dataset, height }) => {
+interface DriftCarouselProps {
+  dataset: string[]
+  height: string
+  children: React.ReactNode
+}
+
+const DriftCarousel: React.FC<DriftCarouselProps> = ({
+  dataset,
+  height,
+  children,
+}) => {
   const containerRef = useRef(null)
   const [index, setIndex] = useState(0)
   const [imgWidth, setImgWidth] = useState(0)
   const [gapSize, setGapSize] = useState(0)
   const [animationDuration, setAnimationDuration] = useState(20000)
-  const [firstRender, setFirstRender] = useState(true)
 
-  const calculateIntervalTime = viewportWidth => {
+  const calculateIntervalTime = (viewportWidth: number) => {
     return (
       (imgWidth + gapSize) *
       (animationDuration / (2 * imgWidth + viewportWidth))
     )
   }
 
-  const renderImage = index => {
+  const renderImage = (index: number) => {
     const img = document.createElement('img')
     img.src = dataset[index]
     img.alt = ''
@@ -34,10 +43,12 @@ const DriftCarousel = ({ dataset, height }) => {
       img.remove()
     })
 
-    containerRef.current.appendChild(img)
+    if (containerRef.current) {
+      ;(containerRef.current as HTMLElement).appendChild(img)
+    }
   }
 
-  const renderStaggeredImage = index => {
+  const renderStaggeredImage = (index: number) => {
     const img = document.createElement('img')
     img.src = dataset[index]
     img.alt = ''
@@ -54,7 +65,9 @@ const DriftCarousel = ({ dataset, height }) => {
       img.remove()
     })
 
-    containerRef.current.appendChild(img)
+    if (containerRef.current) {
+      ;(containerRef.current as HTMLElement).appendChild(img)
+    }
   }
 
   useEffect(() => {
@@ -80,7 +93,9 @@ const DriftCarousel = ({ dataset, height }) => {
       ref={containerRef}
       style={{ height: height }}
       className="flex flex-col w-[100vw] wrap relative mb-12 gap-4 mt-[-10vh] items-center justify-center driftcarousel"
-    ></div>
+    >
+      {children}
+    </div>
   )
 }
 
