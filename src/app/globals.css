@@ -47,3 +47,16 @@ h6 {
     transform: scale(1);
   }
 }
+
+.navbarAnimation {
+  animation: navbarAnimation 2s;
+}
+
+@keyframes navbarAnimation {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
