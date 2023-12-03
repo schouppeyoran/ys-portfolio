@@ -64,6 +64,19 @@ h6 {
   }
 }
 
+.navbarMenu {
+  animation: navbarMenu 2s;
+}
+
+@keyframes navbarMenu {
+  0% {
+    transform: translateX(150%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 .heroAnimation1 {
   animation: heroAnimation1 1s;
 }
