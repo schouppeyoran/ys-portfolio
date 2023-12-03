@@ -37,22 +37,36 @@ const Hero = () => {
     document.fonts.ready.then(updateWidth)
   }, [mobileToggled])
 
+  const [showCarousel, setShowCarousel] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCarousel(true)
+    }, 4000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <section
       id="hero"
       className="h-[100vh] w-[100vw] mb-8 flex flex-col items-center justify-center px-4 py-10"
     >
-      <DriftCarousel
-        dataset={
-          mobileToggled ? DriftCarouselMobileItems : DriftCarouselWebItems
-        }
-        height={'40vh'}
-      />
+      {showCarousel ? (
+        <DriftCarousel
+          dataset={
+            mobileToggled ? DriftCarouselMobileItems : DriftCarouselWebItems
+          }
+          height={'40vh'}
+        />
+      ) : (
+        <div className="h-[40vh] w-screen mb-12 mt-[-10vh]"></div>
+      )}
       <div className="flex flex-row gap-2 text-4xl mb-3">
-        <h1>Hi!</h1>
-        <h1>My name is...</h1>
+        <h1 className="heroAnimation1">Hi!</h1>
+        <h1 className="heroAnimation2">My name is...</h1>
       </div>
-      <div className="flex flex-col gap-2 items-center text-center">
+      <div className="flex flex-col gap-2 items-center text-center heroAnimation3">
         <h1 className="text-6xl text-lava-red stroke-white stroke-1">
           Yoran Schouppe
         </h1>

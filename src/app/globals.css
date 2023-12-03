@@ -49,12 +49,60 @@ h6 {
 }
 
 .navbarAnimation {
-  animation: navbarAnimation 2s;
+  animation: navbarAnimation 5s;
 }
 
 @keyframes navbarAnimation {
   0% {
     transform: translateY(-100%);
+  }
+  80% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.heroAnimation1 {
+  animation: heroAnimation1 1s;
+}
+
+@keyframes heroAnimation1 {
+  0% {
+    transform: translateX(-80vw);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.heroAnimation2 {
+  animation: heroAnimation2 2s;
+}
+
+@keyframes heroAnimation2 {
+  0% {
+    transform: translateX(80vw);
+  }
+  50% {
+    transform: translateX(80vw);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.heroAnimation3 {
+  animation: heroAnimation3 3s;
+}
+
+@keyframes heroAnimation3 {
+  0% {
+    transform: translateY(60vh);
+  }
+  66% {
+    transform: translateY(60vh);
   }
   100% {
     transform: translateY(0%);
