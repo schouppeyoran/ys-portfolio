@@ -16,21 +16,25 @@ const Hero = () => {
   const h1Ref1 = useRef<HTMLHeadingElement>(null)
   const h1Ref2 = useRef<HTMLHeadingElement>(null)
   useEffect(() => {
-    if (togglerIndicator.current && h1Ref1.current && h1Ref2.current) {
-      const firstH1ElementWidth = h1Ref1.current.offsetWidth
-      const secondH1ElementWidth = h1Ref2.current.offsetWidth
-      const firstH1ElementHeight = h1Ref1.current.offsetHeight
-      const secondH1ElementHeight = h1Ref2.current.offsetHeight
-      togglerIndicator.current.style.width = `${
-        (mobileToggled ? secondH1ElementWidth : firstH1ElementWidth) + 6
-      }px`
-      togglerIndicator.current.style.height = `${
-        (mobileToggled ? secondH1ElementHeight : firstH1ElementHeight) + 4
-      }px`
-      togglerIndicator.current.style.transform = `translateX(${
-        mobileToggled ? firstH1ElementWidth + 3 : '-3'
-      }px)`
+    const updateWidth = () => {
+      if (togglerIndicator.current && h1Ref1.current && h1Ref2.current) {
+        const firstH1ElementWidth = h1Ref1.current.offsetWidth
+        const secondH1ElementWidth = h1Ref2.current.offsetWidth
+        const firstH1ElementHeight = h1Ref1.current.offsetHeight
+        const secondH1ElementHeight = h1Ref2.current.offsetHeight
+        togglerIndicator.current.style.width = `${
+          (mobileToggled ? secondH1ElementWidth : firstH1ElementWidth) + 6
+        }px`
+        togglerIndicator.current.style.height = `${
+          (mobileToggled ? secondH1ElementHeight : firstH1ElementHeight) + 4
+        }px`
+        togglerIndicator.current.style.transform = `translateX(${
+          mobileToggled ? firstH1ElementWidth + 3 : -3
+        }px)`
+      }
     }
+
+    document.fonts.ready.then(updateWidth)
   }, [mobileToggled])
 
   return (

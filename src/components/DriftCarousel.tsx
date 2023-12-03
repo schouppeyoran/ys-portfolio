@@ -10,7 +10,23 @@ const DriftCarousel: React.FC<DriftCarouselProps> = ({ dataset, height }) => {
   const [index, setIndex] = useState(0)
   const [imgWidth, setImgWidth] = useState(0)
   const [gapSize, setGapSize] = useState(0)
-  const [animationDuration, setAnimationDuration] = useState(20000)
+  const [animationDuration, setAnimationDuration] = useState(
+    window.innerWidth * 15,
+  )
+
+  useEffect(() => {
+    const updateAnimationDuration = () => {
+      setAnimationDuration(window.innerWidth * 15)
+    }
+
+    updateAnimationDuration() // initial call
+
+    window.addEventListener('resize', updateAnimationDuration)
+
+    return () => {
+      window.removeEventListener('resize', updateAnimationDuration)
+    }
+  }, [])
 
   const calculateIntervalTime = (viewportWidth: number) => {
     return (
