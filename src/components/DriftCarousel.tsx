@@ -14,8 +14,17 @@ const DriftCarousel: React.FC<DriftCarouselProps> = ({ dataset, height }) => {
 
   const calculateIntervalTime = (viewportWidth: number) => {
     return (
-      (imgWidth + gapSize) *
-      (animationDuration / (2 * imgWidth + viewportWidth))
+      (imgWidth + imgWidth * 0.2) *
+      ((((2 * imgWidth + viewportWidth) / (imgWidth + viewportWidth)) *
+        animationDuration) /
+        (2 * imgWidth + viewportWidth))
+    )
+  }
+
+  const calculateTransitionTime = (imgWidth: number, viewportWidth: number) => {
+    return (
+      ((2 * imgWidth + viewportWidth) / (imgWidth + viewportWidth)) *
+      animationDuration
     )
   }
 
@@ -26,11 +35,14 @@ const DriftCarousel: React.FC<DriftCarouselProps> = ({ dataset, height }) => {
     img.className = 'h-[48%] object-contain absolute'
     img.style.top = '0'
     img.style.left = '100%'
-    img.style.transition = `all ${animationDuration}ms linear`
 
     img.onload = () => {
       setImgWidth(img.offsetWidth)
       setGapSize(img.offsetWidth * 0.2)
+      img.style.transition = `all ${calculateTransitionTime(
+        img.offsetWidth,
+        window.innerWidth,
+      )}ms linear`
       img.style.left = `-${img.offsetWidth + img.offsetWidth / 2}px`
     }
 
@@ -49,9 +61,12 @@ const DriftCarousel: React.FC<DriftCarouselProps> = ({ dataset, height }) => {
     img.alt = ''
     img.className = 'h-[48%] object-contain absolute'
     img.style.bottom = '0'
-    img.style.transition = `all ${animationDuration}ms linear`
 
     img.onload = () => {
+      img.style.transition = `all ${calculateTransitionTime(
+        img.offsetWidth,
+        window.innerWidth,
+      )}ms linear`
       img.style.left = `calc(100% + ${img.offsetWidth / 2}px)`
       img.style.left = `-${img.offsetWidth}px`
     }
