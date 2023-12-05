@@ -23,7 +23,7 @@ const Navbar: FC<NavbarProps> = ({ items }) => {
             <a
               key={index}
               href={`#${item.toLowerCase()}`}
-              className="text-sm hover:text-white hover:bg-lava-red transition rounded flex flex-row items-center gap-1 px-1"
+              className="text-sm hover:text-white transition rounded flex flex-row items-center gap-1 px-1"
             >
               {item}
             </a>
