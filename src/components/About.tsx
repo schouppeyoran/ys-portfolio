@@ -107,23 +107,25 @@ const About = () => {
       id="about"
       className="w-screen flex flex-col items-center justify-center px-4 pt-0 py-10"
     >
-      {aboutSections.map((section, index) => (
-        <div
-          className="flex flex-col items-center justify-center mb-6 max-w-[1920px] w-[100%]"
-          key={index}
-        >
-          <img
-            src={section.image}
-            alt=""
-            className="transition hover:scale-110 duration-500"
-          />
+      <div className="max-w-[1920px] flex flex-col items-center justify-center xl:flex-row xl:gap-8 xl:items-start">
+        {aboutSections.map((section, index) => (
+          <div
+            className="flex flex-col items-center justify-center mb-6 max-w-[1920px] w-[100%]"
+            key={index}
+          >
+            <img
+              src={section.image}
+              alt=""
+              className="transition hover:scale-110 duration-500"
+            />
 
-          <h1 className="text-2xl px-2 py-1 mb-3 rounded aboutHeading">
-            {section.title}
-          </h1>
-          <p className="text-center">{section.text}</p>
-        </div>
-      ))}
+            <h1 className="text-2xl px-2 py-1 mb-3 rounded aboutHeading">
+              {section.title}
+            </h1>
+            <p className="text-center">{section.text}</p>
+          </div>
+        ))}
+      </div>
       {skills.map((skill, index) => (
         <div className="flex flex-col w-[100%] mb-4">
           <div className="flex flex-row items-center justify-center w-[100%] border-b-2 border-pale-carmine relative mb-2">
@@ -134,7 +136,7 @@ const About = () => {
               <div className="w-3 h-4 bg-rock skew-x-[30deg]" />
             </div>
           </div>
-          <div className="flex flex-row flex-wrap justify-evenly gap-4">
+          <div className="flex flex-row flex-wrap justify-evenly gap-4 max-w-[1920px] w-[100%] mx-auto">
             {skill.items.map((item, index) => (
               <div className="flex flex-col items-center gap-2">
                 <img

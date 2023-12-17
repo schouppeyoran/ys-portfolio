@@ -57,7 +57,7 @@ const Hero = () => {
           dataset={
             mobileToggled ? DriftCarouselMobileItems : DriftCarouselWebItems
           }
-          height={'40vh'}
+          height={window.innerWidth > 1600 ? '50vh' : '40vh'}
         />
       ) : (
         <div className="h-[40vh] w-screen mb-12 mt-[-10vh]"></div>
