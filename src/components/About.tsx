@@ -107,7 +107,7 @@ const About = () => {
       id="about"
       className="w-screen flex flex-col items-center justify-center px-4 pt-0 py-10"
     >
-      <div className="max-w-[1920px] flex flex-col items-center justify-center xl:flex-row xl:gap-8 xl:items-start">
+      <div className="max-w-[1920px] flex flex-col items-center justify-center lg:flex-row lg:gap-8 lg:items-start">
         {aboutSections.map((section, index) => (
           <div
             className="flex flex-col items-center justify-center mb-6 max-w-[1920px] w-[100%]"
@@ -127,7 +127,7 @@ const About = () => {
         ))}
       </div>
       {skills.map((skill, index) => (
-        <div className="flex flex-col w-[100%] mb-4">
+        <div className="flex flex-col w-[100%] mb-4" key={index}>
           <div className="flex flex-row items-center justify-center w-[100%] border-b-2 border-pale-carmine relative mb-2">
             <div className="max-w-[1920px] flex-1 flex flex-row items-end gap-2">
               <h2 className="text-xl mr-2">{skill.title}</h2>
@@ -138,11 +138,11 @@ const About = () => {
           </div>
           <div className="flex flex-row flex-wrap justify-evenly gap-4 max-w-[1920px] w-[100%] mx-auto">
             {skill.items.map((item, index) => (
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex flex-col items-center gap-2" key={index}>
                 <img
                   src={item.icon}
                   alt=""
-                  className="w-16 h-16 transition hover:scale-110 duration-500"
+                  className="w-16 h-16 lg:w-32 lg:h-32 transition hover:scale-110 duration-500"
                 />
                 <h2 className="text-center">{item.title}</h2>
               </div>
