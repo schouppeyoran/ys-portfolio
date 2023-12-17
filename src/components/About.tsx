@@ -19,6 +19,63 @@ const aboutSections = [
   },
 ]
 
+const skills = [
+  {
+    title: 'Tech stack',
+    items: [
+      {
+        icon: '/assets/icons/html5.svg',
+        title: 'HTML5',
+      },
+      {
+        icon: '/assets/icons/css3.svg',
+        title: 'CSS3',
+      },
+      {
+        icon: '/assets/icons/javascript.svg',
+        title: 'JavaScript',
+      },
+      {
+        icon: '/assets/icons/typescript.svg',
+        title: 'TypeScript',
+      },
+      {
+        icon: '/assets/icons/react.svg',
+        title: 'React',
+      },
+      {
+        icon: '/assets/icons/react.svg',
+        title: 'React Native',
+      },
+      {
+        icon: '/assets/icons/nextjs.svg',
+        title: 'Next.js',
+      },
+      {
+        icon: '/assets/icons/tailwindcss.svg',
+        title: 'Tailwind CSS',
+      },
+      {
+        icon: '/assets/icons/nodejs.svg',
+        title: 'Node.js',
+      },
+    ],
+  },
+  {
+    title: 'Design',
+    items: [
+      {
+        icon: '/assets/icons/figma.svg',
+        title: 'Figma',
+      },
+      {
+        icon: '/assets/icons/blender.svg',
+        title: 'Blender',
+      },
+    ],
+  },
+]
+
 const About = () => {
   return (
     <section
@@ -27,7 +84,7 @@ const About = () => {
     >
       {aboutSections.map((section, index) => (
         <div
-          className="flex flex-col items-center justify-center mb-6"
+          className="flex flex-col items-center justify-center mb-6 max-w-[1920px] w-[100%]"
           key={index}
         >
           <img
@@ -40,6 +97,30 @@ const About = () => {
             {section.title}
           </h1>
           <p className="text-center">{section.text}</p>
+        </div>
+      ))}
+      {skills.map((skill, index) => (
+        <div className="flex flex-col w-[100%] mb-4">
+          <div className="flex flex-row items-center justify-center w-[100%] border-b-2 border-pale-carmine relative">
+            <div className="max-w-[1920px] flex-1 flex flex-row items-end gap-2">
+              <h2 className="text-xl mr-2">{skill.title}</h2>
+              <div className="w-5 h-6 bg-pale-carmine skew-x-[30deg]" />
+              <div className="w-4 h-5 bg-ironstone skew-x-[30deg]" />
+              <div className="w-3 h-4 bg-rock skew-x-[30deg]" />
+            </div>
+          </div>
+          <div className="flex flex-row flex-wrap justify-evenly gap-4">
+            {skill.items.map((item, index) => (
+              <div className="flex flex-col items-center gap-2">
+                <img
+                  src={item.icon}
+                  alt=""
+                  className="w-16 h-16 transition hover:scale-110 duration-500"
+                />
+                <h2 className="text-center">{item.title}</h2>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </section>
