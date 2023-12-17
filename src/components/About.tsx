@@ -74,6 +74,31 @@ const skills = [
       },
     ],
   },
+  {
+    title: 'Work management',
+    items: [
+      {
+        icon: '/assets/icons/git.svg',
+        title: 'Git',
+      },
+      {
+        icon: '/assets/icons/github.svg',
+        title: 'GitHub',
+      },
+      {
+        icon: '/assets/icons/jira.svg',
+        title: 'Jira',
+      },
+      {
+        icon: '/assets/icons/confluence.svg',
+        title: 'Confluence',
+      },
+      {
+        icon: '/assets/icons/clockify.svg',
+        title: 'Clockify',
+      },
+    ],
+  },
 ]
 
 const About = () => {
@@ -101,7 +126,7 @@ const About = () => {
       ))}
       {skills.map((skill, index) => (
         <div className="flex flex-col w-[100%] mb-4">
-          <div className="flex flex-row items-center justify-center w-[100%] border-b-2 border-pale-carmine relative">
+          <div className="flex flex-row items-center justify-center w-[100%] border-b-2 border-pale-carmine relative mb-2">
             <div className="max-w-[1920px] flex-1 flex flex-row items-end gap-2">
               <h2 className="text-xl mr-2">{skill.title}</h2>
               <div className="w-5 h-6 bg-pale-carmine skew-x-[30deg]" />
