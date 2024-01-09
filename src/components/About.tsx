@@ -107,7 +107,7 @@ const About = () => {
       id="about"
       className="w-screen flex flex-col items-center justify-center px-4 pt-0 py-10"
     >
-      <div className="max-w-[1920px] flex flex-col items-center justify-center lg:flex-row lg:gap-8 lg:items-start">
+      <div className="max-w-[1920px] flex flex-col items-center justify-center lg:flex-row lg:gap-8 lg:items-start mb-12">
         {aboutSections.map((section, index) => (
           <div
             className="flex flex-col items-center justify-center mb-6 max-w-[1920px] w-[100%]"
