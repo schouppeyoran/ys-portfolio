@@ -11,7 +11,7 @@ const portfolioItems = [
   {
     title: 'Gianni DM',
     description:
-      'Gianni is a dear friend of mine. He is a talented video editor & content manager. He needed a website to showcase his work and to be able to contact him. I built this website using barebones React, it was my first real-world experience designing and developing a website for a client.',
+      'Gianni is a talented video editor & content manager, and a dear friend of mine. He needed a website to showcase his work to potential clients, and present them ways through which they can contact him. I built this website using barebones React. This was my first real-world experience designing and developing a website for a client.',
     link: 'https://giannidm.com',
     images: [
       '/assets/portfolioItems/giannidm/1.png',
@@ -37,10 +37,9 @@ const Portfolio = () => {
       <h1 className="text-xl py-2 bg-ironstone w-[100%] text-center">
         Gianni DM
       </h1>
-
       <Swiper
         style={{}}
-        className="w-[100%] h-[50vh] flex flex-col items-center justify-center"
+        className="w-[100%] h-[35vh] flex flex-col items-center justify-center bg-rock/10"
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={50}
         slidesPerView={1}
@@ -56,11 +55,14 @@ const Portfolio = () => {
             <img
               src={image}
               alt={`Slide ${index}`}
-              className="contain w-[95%] mx-auto mt-[10vh] select-none mb-8"
+              className="contain w-[95%] mx-auto mt-4 select-none mb-8"
             />
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="w-full h-[25vh] bg-woodsmoke border-t-2 border-b-2 border-pale-carmine px-2 pt-2 pb-4 overflow-scroll">
+        <p className="text-center">{portfolioItems[currentItem].description}</p>
+      </div>
     </div>
   )
 }
