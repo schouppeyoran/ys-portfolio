@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -23,6 +23,11 @@ const portfolioItems = [
 
 const Portfolio = () => {
   const [currentItem, setCurrentItem] = useState(0)
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth > 768)
+  }, [])
 
   return (
     <div className="max-w-[1920px] w-[100%] flex flex-col items-center justify-center">
@@ -32,29 +37,30 @@ const Portfolio = () => {
       <h1 className="text-xl py-2 bg-ironstone w-[100%] text-center">
         Gianni DM
       </h1>
-      <div className="border-t border-ironstone w-[100%] h-[50vh] flex flex-col items-center justify-center relative mb-12">
-        <Swiper
-          className="w-[100%]"
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={50}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          onSwiper={swiper => console.log(swiper)}
-          onSlideChange={() => console.log('slide change')}
-        >
-          {portfolioItems[currentItem].images.map((image, index) => (
-            <SwiperSlide key={index}>
-              <img
-                src={image}
-                alt={`Slide ${index}`}
-                className="contain w-[95%] mx-auto select-none"
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+
+      <Swiper
+        style={{}}
+        className="w-[100%] h-[50vh] flex flex-col items-center justify-center"
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={50}
+        slidesPerView={1}
+        navigation={isDesktop ? true : false}
+        pagination={{
+          clickable: true,
+        }}
+        onSwiper={swiper => console.log(swiper)}
+        onSlideChange={() => console.log('slide change')}
+      >
+        {portfolioItems[currentItem].images.map((image, index) => (
+          <SwiperSlide key={index}>
+            <img
+              src={image}
+              alt={`Slide ${index}`}
+              className="contain w-[95%] mx-auto mt-[10vh] select-none mb-8"
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   )
 }
