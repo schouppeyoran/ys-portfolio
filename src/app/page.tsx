@@ -1,5 +1,6 @@
 import About from '@/components/About'
 import Backdrop from '@/components/Backdrop'
+import Contact from '@/components/Contact'
 import Hero from '@/components/Hero'
 import Navbar from '@/components/Navbar'
 import Portfolio from '@/components/Portfolio'
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <About />
       <Portfolio />
+      <Contact />
       <Navbar items={items} />
     </Backdrop>
   )
