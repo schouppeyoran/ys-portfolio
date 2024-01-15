@@ -122,7 +122,7 @@ const About = () => {
             <h1 className="text-2xl px-2 py-1 rounded aboutHeading">
               {section.title}
             </h1>
-            <p className="text-center">{section.text}</p>
+            <p className="text-center mb-8">{section.text}</p>
           </div>
         ))}
       </div>
