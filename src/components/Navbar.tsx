@@ -51,6 +51,7 @@ const Navbar: FC<NavbarProps> = ({ items }) => {
                   key={index}
                   href={`#${item.toLowerCase()}`}
                   className="text-sm hover:text-white hover:bg-lava-red transition rounded flex flex-row items-center gap-1 px-1"
+                  onClick={() => setMenuVisible(false)}
                 >
                   {item}
                 </a>
