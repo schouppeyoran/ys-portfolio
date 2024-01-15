@@ -22,7 +22,7 @@ const Backdrop: React.FC<BackdropProps> = ({ children }) => {
   const [documentHeight, setDocumentHeight] = useState('100%')
 
   return (
-    <main className="flex flex-col items-center overflow-hidden">
+    <main className="flex flex-col items-center overflow-hidden gap-4">
       <canvas
         ref={canvasRef}
         className="z-0 absolute w-[100%] h-[100%]"
