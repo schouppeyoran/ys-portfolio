@@ -21,7 +21,7 @@ const aboutSections = [
 
 const skills = [
   {
-    title: 'Tech stack',
+    title: 'Technologies',
     items: [
       {
         icon: '/assets/icons/html5.svg',
@@ -56,6 +56,10 @@ const skills = [
         title: 'Tailwind CSS',
       },
       {
+        icon: '/assets/icons/redux.svg',
+        title: 'Redux',
+      },
+      {
         icon: '/assets/icons/nodejs.svg',
         title: 'Node.js',
       },
@@ -71,6 +75,14 @@ const skills = [
       {
         icon: '/assets/icons/blender.svg',
         title: 'Blender',
+      },
+      {
+        icon: '/assets/icons/photoshop.svg',
+        title: 'Photoshop',
+      },
+      {
+        icon: '/assets/icons/premierepro.svg',
+        title: 'Premiere Pro',
       },
     ],
   },
