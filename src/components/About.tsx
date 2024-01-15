@@ -119,7 +119,7 @@ const About = () => {
               className="transition hover:scale-110 duration-500"
             />
 
-            <h1 className="text-2xl px-2 py-1 mb-3 rounded aboutHeading">
+            <h1 className="text-2xl px-2 py-1 rounded aboutHeading">
               {section.title}
             </h1>
             <p className="text-center">{section.text}</p>
@@ -129,11 +129,13 @@ const About = () => {
       {skills.map((skill, index) => (
         <div className="flex flex-col w-[100%] mb-4" key={index}>
           <div className="flex flex-row items-center justify-center w-[100%] border-b-2 border-pale-carmine relative mb-2">
-            <div className="max-w-[1920px] flex-1 flex flex-row items-end gap-2">
+            <div className="max-w-[1920px] flex-1 flex flex-row items-end justify-between">
               <h2 className="text-xl mr-2">{skill.title}</h2>
-              <div className="w-5 h-6 bg-pale-carmine skew-x-[30deg]" />
-              <div className="w-4 h-5 bg-ironstone skew-x-[30deg]" />
-              <div className="w-3 h-4 bg-rock skew-x-[30deg]" />
+              <div className="flex flex-row items-end gap-2 mr-2">
+                <div className="w-5 h-6 bg-pale-carmine skew-x-[30deg]" />
+                <div className="w-4 h-5 bg-ironstone skew-x-[30deg]" />
+                <div className="w-3 h-4 bg-rock skew-x-[30deg]" />
+              </div>
             </div>
           </div>
           <div className="flex flex-row flex-wrap justify-evenly gap-4 max-w-[1920px] w-[100%] mx-auto">
