@@ -117,7 +117,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="w-screen flex flex-col items-center justify-center px-4 pt-0 py-10"
+      className="w-screen flex flex-col items-center justify-center px-4 pt-0 py-10 pt-16"
     >
       <div className="max-w-[1920px] flex flex-col items-center justify-center lg:flex-row lg:gap-8 lg:items-start mb-12">
         {aboutSections.map((section, index) => (
@@ -139,7 +139,7 @@ const About = () => {
         ))}
       </div>
       {skills.map((skill, index) => (
-        <div className="flex flex-col w-[100%] mb-4" key={index}>
+        <div className="flex flex-col w-[100%] mb-8" key={index}>
           <div className="flex flex-row items-center justify-center w-[100%] border-b-2 border-pale-carmine relative mb-2">
             <div className="max-w-[1920px] flex-1 flex flex-row items-end justify-between">
               <h2 className="text-xl mr-2">{skill.title}</h2>
