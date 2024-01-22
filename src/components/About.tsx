@@ -116,7 +116,7 @@ const skills = [
 ]
 
 const About = () => {
-  const [selectedAboutSection, setSelectedAboutSection] = React.useState(0)
+  const [selectedAboutSection, setSelectedAboutSection] = useState(0)
 
   return (
     <section
@@ -126,7 +126,7 @@ const About = () => {
       <div className="max-w-[1920px] flex flex-col items-center justify-center md:flex-row md:gap-4 md:items-start mb-12 md:mb-0">
         {aboutSections.map((section, index) => (
           <div
-            className={`flex flex-col items-center justify-center mb-6 md:mb-0 max-w-[1920px] w-[100%] md:cursor-pointer ${
+            className={`flex flex-col items-center justify-center mb-6 md:mb-0 max-w-[1920px] w-[100%] md:cursor-pointer md:py-3 ${
               selectedAboutSection === index && 'bg-white/10 rounded-t-lg'
             }  `}
             key={index}
@@ -164,7 +164,7 @@ const About = () => {
         <div className="flex flex-col w-[100%] mb-8" key={index}>
           <div className="flex flex-row items-center justify-center w-[100%] border-b-2 border-pale-carmine relative mb-2">
             <div className="max-w-[1920px] flex-1 flex flex-row items-end justify-between">
-              <h2 className="text-xl mr-2">{skill.title}</h2>
+              <h2 className="text-xl md:text-2xl mr-2">{skill.title}</h2>
               <div className="flex flex-row items-end gap-2 mr-2">
                 <div className="w-5 h-6 bg-pale-carmine skew-x-[30deg]" />
                 <div className="w-4 h-5 bg-ironstone skew-x-[30deg]" />
@@ -178,7 +178,7 @@ const About = () => {
                 <img
                   src={item.icon}
                   alt=""
-                  className="w-16 h-16 lg:w-32 lg:h-32 transition hover:scale-110 duration-500"
+                  className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 transition hover:scale-110 duration-500"
                 />
                 <h2 className="text-center">{item.title}</h2>
               </div>
