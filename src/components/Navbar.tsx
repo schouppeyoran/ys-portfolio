@@ -45,12 +45,12 @@ const Navbar: FC<NavbarProps> = ({ items }) => {
             Menu
           </a>
           {menuVisible && items && (
-            <div className="absolute top-[105%] py-3 px-6 bg-ironstone rounded gap-3 flex flex-col navbarMenu z-90">
+            <div className="absolute top-[105%] right-4 py-2 px-2 bg-ironstone rounded gap-2 flex flex-col navbarMenu z-90 shadow-lg">
               {items.map((item, index) => (
                 <a
                   key={index}
                   href={`#${item.toLowerCase()}`}
-                  className="text-sm hover:text-white hover:bg-lava-red transition rounded flex flex-row items-center gap-1 px-1"
+                  className="text-sm hover:text-white hover:bg-lava-red transition rounded flex flex-row items-center gap-1 px-4 py-2 bg-white/10"
                   onClick={() => setMenuVisible(false)}
                 >
                   {item}
