@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import AboutBadge from './AboutBadge'
 
 const aboutSections = [
@@ -114,29 +116,49 @@ const skills = [
 ]
 
 const About = () => {
+  const [selectedAboutSection, setSelectedAboutSection] = React.useState(0)
+
   return (
     <section
       id="about"
-      className="w-screen flex flex-col items-center justify-center px-4 pt-0 py-10 pt-16"
+      className="w-screen flex flex-col items-center justify-center px-4 pt-0 py-10 pt-16 md:pt-24"
     >
-      <div className="max-w-[1920px] flex flex-col items-center justify-center lg:flex-row lg:gap-8 lg:items-start mb-12">
+      <div className="max-w-[1920px] flex flex-col items-center justify-center md:flex-row md:gap-4 md:items-start mb-12 md:mb-0">
         {aboutSections.map((section, index) => (
           <div
-            className="flex flex-col items-center justify-center mb-6 max-w-[1920px] w-[100%]"
+            className={`flex flex-col items-center justify-center mb-6 md:mb-0 max-w-[1920px] w-[100%] md:cursor-pointer ${
+              selectedAboutSection === index && 'bg-white/10 rounded-t-lg'
+            }  `}
             key={index}
+            onClick={() => setSelectedAboutSection(index)}
           >
             <img
               src={section.image}
               alt=""
-              className="transition hover:scale-110 duration-500"
+              className={`transition hover:scale-110 duration-500`}
             />
 
-            <h1 className="text-2xl px-2 py-1 rounded aboutHeading">
+            <h1
+              className={`text-2xl md:text-xl px-2 py-1 rounded aboutHeading ${
+                selectedAboutSection === index && 'md:bg-pale-carmine'
+              } transition`}
+            >
               {section.title}
             </h1>
-            <p className="text-center mb-8">{section.text}</p>
+            <p className="text-center mb-8 md:hidden">{section.text}</p>
           </div>
         ))}
+      </div>
+      <div
+        className={`hidden md:flex transition py-2 px-6 mb-12 text-center bg-white/10 rounded-xl text-lg ${
+          selectedAboutSection === 0
+            ? 'rounded-tl-none'
+            : selectedAboutSection === aboutSections.length - 1
+            ? 'rounded-tr-none'
+            : null
+        }`}
+      >
+        <p>{aboutSections[selectedAboutSection].text}</p>
       </div>
       {skills.map((skill, index) => (
         <div className="flex flex-col w-[100%] mb-8" key={index}>
