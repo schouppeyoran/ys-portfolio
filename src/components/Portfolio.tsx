@@ -178,7 +178,8 @@ const Portfolio = () => {
           <p>{portfolioItems[currentItem].description}</p>
           <a
             href={portfolioItems[currentItem].link}
-            className="p-2 bg-pale-carmine rounded text-xl mt-auto hover:scale-105 transition hover:bg-lava-red"
+            className="py-2 px-4 bg-pale-carmine rounded text-xl mt-auto hover:scale-105 transition hover:bg-lava-red"
+            target="_blank"
           >
             <h1>Go there!</h1>
           </a>
