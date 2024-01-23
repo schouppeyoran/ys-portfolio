@@ -41,7 +41,7 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="w-screen flex flex-col items-center justify-center px-4 py-10 pt-16"
+      className="w-screen max-w-[1920px] flex flex-col items-center justify-center px-4 py-10 pt-16"
     >
       <div className="flex flex-row w-full items-center justify-between">
         <div className="flex flex-col">
@@ -94,10 +94,10 @@ const Contact = () => {
         <div className="w-full flex flex-row items-center justify-between gap-4  2xl:flex-col 2xl:items-stretch 2xl:flex-1">
           <a
             href="mailto:schouppey@gmail.com"
-            className="flex-1 flex flex-col items-center gap-2 p-2 bg-white/10 rounded-lg hover:bg-lava-red transition 2xl:flex-row 2xl:gap-8 2xl:p-3"
+            className="flex-1 flex flex-col items-center gap-2 p-2 bg-white/10 rounded-lg hover:bg-lava-red transition 2xl:flex-row 2xl:gap-8 2xl:px-8 2xl:py-2"
           >
             <div className="flex flex-col items-center">
-              <h1 className="2xl:text-xl">E-mail</h1>
+              <h1 className="2xl:text-lg">E-mail</h1>
               <img
                 src="/assets/icons/gmail.svg"
                 alt=""
@@ -108,10 +108,10 @@ const Contact = () => {
           </a>
           <a
             href="https://t.me/MrBlonde245"
-            className="flex-1 flex flex-col items-center gap-2 p-2 bg-white/10 rounded-lg hover:bg-lava-red transition 2xl:flex-row 2xl:gap-8 2xl:p-3"
+            className="flex-1 flex flex-col items-center gap-2 p-2 bg-white/10 rounded-lg hover:bg-lava-red transition 2xl:flex-row 2xl:gap-8 2xl:px-8 2xl:py-2"
           >
             <div className="flex flex-col items-center">
-              <h1 className="2xl:text-xl">Telegram</h1>
+              <h1 className="2xl:text-lg">Telegram</h1>
               <img
                 src="/assets/icons/telegram.svg"
                 alt=""

@@ -121,7 +121,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="w-screen flex flex-col items-center justify-center px-4 pt-0 py-10 pt-16 md:pt-24"
+      className="w-screen max-w-[1920px] flex flex-col items-center justify-center px-4 pt-0 py-10 pt-16 md:pt-24"
     >
       <div className="max-w-[1920px] flex flex-col items-center justify-center md:flex-row md:gap-4 md:items-start mb-12 md:mb-0 2xl:px-8 2xl:gap-8 ">
         {aboutSections.map((section, index) => (
