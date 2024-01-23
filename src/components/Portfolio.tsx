@@ -132,7 +132,7 @@ const Portfolio = () => {
         Portfolio
       </h1>
       <div className="flex flex-row w-full">
-        <div className="flex flex-col w-[100%] 2xl:w-[75%]">
+        <div className="flex flex-col w-[100%] 2xl:w-[75%] 2xl:border-l-2 2xl:border-ironstone">
           <Swiper
             style={{}}
             className="w-[100%] h-[35vh] 2xl:h-[60vh] flex flex-col items-center justify-center bg-rock/10"
@@ -173,7 +173,7 @@ const Portfolio = () => {
             ))}
           </div>
         </div>
-        <div className="hidden 2xl:flex flex-col items-center px-4 py-2 w-[25%] bg-rock/20 border-l-2 border-rock text-center">
+        <div className="hidden 2xl:flex flex-col items-center px-4 py-2 w-[25%] bg-rock/20 border-l-2 border-rock text-center 2xl:border-r-2 2xl:border-r-ironstone">
           <h1 className="text-2xl text-pale-carmine">Description</h1>
           <p>{portfolioItems[currentItem].description}</p>
           <a

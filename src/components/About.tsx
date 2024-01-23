@@ -141,7 +141,7 @@ const About = () => {
             <h1
               className={`text-2xl md:text-xl px-2 py-1 rounded aboutHeading ${
                 selectedAboutSection === index && 'md:bg-pale-carmine'
-              } transition 2xl:bg-transparent`}
+              } transition 2xl:bg-transparent 2xl:text-2xl`}
             >
               {section.title}
             </h1>
