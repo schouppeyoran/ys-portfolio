@@ -149,7 +149,7 @@ const Portfolio = () => {
             <img
               src={image}
               alt={`Slide ${index}`}
-              className="contain w-[95%] mx-auto mt-4 select-none mb-8"
+              className="object-contain w-[95%] max-h-[30vh] mx-auto mt-4 select-none mb-8"
             />
           </SwiperSlide>
         ))}
