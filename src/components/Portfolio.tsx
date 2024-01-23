@@ -131,30 +131,60 @@ const Portfolio = () => {
       <h1 className="w-[100%] py-2 bg-pale-carmine text-center text-4xl rounded-t-lg">
         Portfolio
       </h1>
-      <Swiper
-        style={{}}
-        className="w-[100%] h-[35vh] flex flex-col items-center justify-center bg-rock/10"
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={50}
-        slidesPerView={1}
-        navigation={isDesktop ? true : false}
-        pagination={{
-          clickable: true,
-        }}
-        onSwiper={swiper => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
-      >
-        {portfolioItems[currentItem].images.map((image, index) => (
-          <SwiperSlide key={index}>
-            <img
-              src={image}
-              alt={`Slide ${index}`}
-              className="object-contain w-[95%] max-h-[30vh] mx-auto mt-4 select-none mb-8"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className="w-full h-[20vh] bg-woodsmoke/50 border-t-2 border-b-2 border-pale-carmine px-2 pt-2 pb-4 overflow-y-scroll">
+      <div className="flex flex-row w-full">
+        <div className="flex flex-col w-[100%] 2xl:w-[75%]">
+          <Swiper
+            style={{}}
+            className="w-[100%] h-[35vh] 2xl:h-[60vh] flex flex-col items-center justify-center bg-rock/10"
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            spaceBetween={50}
+            slidesPerView={1}
+            navigation={isDesktop ? true : false}
+            pagination={{
+              clickable: true,
+            }}
+            onSwiper={swiper => console.log(swiper)}
+            onSlideChange={() => console.log('slide change')}
+          >
+            {portfolioItems[currentItem].images.map((image, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={image}
+                  alt={`Slide ${index}`}
+                  className="object-contain w-[95%] max-h-[30vh] 2xl:max-h-[55vh] mx-auto mt-4 select-none mb-8"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <div className="hidden flex-row flex-wrap w-full items-center justify-start gap-4 px-4 py-2 2xl:flex bg-rock/20 border-t-2 border-rock">
+            <h1 className="text-2xl">Tech stack:</h1>
+            {portfolioItems[currentItem].techStack.map((tech, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center justify-center mx-2"
+              >
+                <img
+                  src={tech.icon}
+                  alt={tech.name}
+                  className="w-12 h-12 hover:scale-105 transition"
+                />
+                <p className="text-center text-sm">{tech.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="hidden 2xl:flex flex-col items-center px-4 py-2 w-[25%] bg-rock/20 border-l-2 border-rock text-center">
+          <h1 className="text-2xl text-pale-carmine">Description</h1>
+          <p>{portfolioItems[currentItem].description}</p>
+          <a
+            href={portfolioItems[currentItem].link}
+            className="p-2 bg-pale-carmine rounded text-xl mt-auto hover:scale-105 transition hover:bg-lava-red"
+          >
+            <h1>Go there!</h1>
+          </a>
+        </div>
+      </div>
+      <div className="w-full h-[20vh] bg-woodsmoke/50 border-t-2 border-b-2 border-pale-carmine px-2 pt-2 pb-4 overflow-y-scroll 2xl:hidden">
         {mobileInterfaceToggle ? (
           <div className="flex flex-row flex-wrap w-full items-start justify-center">
             {portfolioItems[currentItem].techStack.map((tech, index) => (
@@ -174,7 +204,7 @@ const Portfolio = () => {
         )}
       </div>
       <div
-        className="flex flex-row p-2 gap-1.5 text-xl rounded cursor-pointer select-none relative items-center w-full bg-woodsmoke/70"
+        className="flex flex-row p-2 gap-1.5 text-xl rounded cursor-pointer select-none relative items-center w-full bg-woodsmoke/70 2xl:hidden"
         onClick={() => setMobileInterfaceToggle(!mobileInterfaceToggle)}
       >
         <div
@@ -210,7 +240,7 @@ const Portfolio = () => {
           <FaChevronLeft size={30} />
         </button>
         <div className="flex flex-col items-center">
-          <h2>{portfolioItems[currentItem].title}</h2>
+          <h2 className="2xl:text-2xl">{portfolioItems[currentItem].title}</h2>
           <p>
             {currentItem + 1}/{portfolioItems.length}
           </p>
