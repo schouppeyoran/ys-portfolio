@@ -58,7 +58,7 @@ const Contact = () => {
         >
           <input
             type="text"
-            name="user_name"
+            name="name"
             placeholder="Your name"
             className="p-2 rounded-lg bg-white/20"
             required
@@ -68,7 +68,7 @@ const Contact = () => {
           />
           <input
             type="email"
-            name="user_email"
+            name="email"
             placeholder="Your email"
             className="p-2 rounded-lg bg-white/20"
             required

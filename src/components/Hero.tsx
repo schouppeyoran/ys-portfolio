@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import DriftCarousel from './DriftCarousel'
 import { DriftCarouselWebItems } from '@/config/DriftCarouselWebItems'
 import { DriftCarouselMobileItems } from '@/config/DriftCarouselMobileItems'
+import { WavyBackground } from './wavy-background'
 
 const Hero = () => {
   // ----- TOGGLE BETWEEN WEB AND MOBILE LOGIC -----

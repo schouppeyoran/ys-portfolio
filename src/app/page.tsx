@@ -7,7 +7,7 @@ import Navbar from '@/components/Navbar'
 import Portfolio from '@/components/Portfolio'
 import '@fontsource/bebas-neue'
 
-const items = ['Home', 'About', 'Projects', 'Contact']
+const items = ['home', 'about', 'projects', 'contact']
 
 export default function Home() {
   return (
