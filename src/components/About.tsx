@@ -152,7 +152,7 @@ const About = () => {
         ))}
       </div>
       <div
-        className={`hidden md:flex transition py-2 px-6 mb-12 text-center bg-white/10 rounded-xl text-lg ${
+        className={`hidden md:flex items-center justify-center min-h-[180px] transition py-2 px-6 mb-12 text-center bg-white/10 rounded-xl text-lg ${
           selectedAboutSection === 0
             ? 'rounded-tl-none'
             : selectedAboutSection === aboutSections.length - 1
@@ -160,7 +160,9 @@ const About = () => {
             : null
         } 2xl:hidden`}
       >
-        <p>{aboutSections[selectedAboutSection].text}</p>
+        <p className="text-center max-w-[60%]">
+          {aboutSections[selectedAboutSection].text}
+        </p>
       </div>
       <div className="w-full flex flex-col 2xl:flex-row 2xl:gap-8">
         {skills.map((skill, index) => (
