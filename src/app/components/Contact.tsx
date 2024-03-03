@@ -7,7 +7,7 @@ import emailjs from '@emailjs/browser'
 const Contact = () => {
   const [result, setResult] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const formRef = useRef()
+  const formRef = useRef<HTMLFormElement>(null)
 
   const sendEmail = (e: any) => {
     e.preventDefault()
@@ -28,7 +28,9 @@ const Contact = () => {
             'Thank you for your message! I will get back to you as soon as possible.',
           )
           setIsSubmitting(false)
-          formRef.current.reset()
+          if (formRef.current) {
+            formRef.current.reset()
+          }
         },
         error => {
           console.log(error.text)

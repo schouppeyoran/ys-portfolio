@@ -121,11 +121,11 @@ const Portfolio = () => {
           >
             {webUtils.data.portfolio.items[currentItem].images.map(
               (image: any, index: number) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={index} style={{ display: 'flex' }}>
                   <img
                     src={image}
                     alt={`Slide ${index}`}
-                    className="object-contain w-[95%] max-h-[30vh] 2xl:max-h-[55vh] mx-auto mt-4 select-none mb-8"
+                    className="object-contain w-[90%] max-h-[30vh] 2xl:max-h-[55vh] mx-auto my-auto mt-4 select-none mb-8"
                   />
                 </SwiperSlide>
               ),
