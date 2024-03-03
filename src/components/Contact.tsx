@@ -41,7 +41,7 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="w-screen max-w-[1920px] flex flex-col items-center justify-center px-4 py-10 pt-16"
+      className="w-screen max-w-[1600px] flex flex-col items-center justify-center px-4 py-10 pt-16"
     >
       <div className="flex flex-row w-full items-center justify-between">
         <div className="flex flex-col">

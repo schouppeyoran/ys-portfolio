@@ -62,7 +62,7 @@ const Navbar: FC<NavbarProps> = ({ items }) => {
 
   return (
     <nav className="bg-woodsmoke w-screen p-4 flex flex-row items-center justify-center shadow shadow-lava-red/50 z-100 fixed navbarAnimation">
-      <div className="max-w-[1920px] flex-1 flex flex-row items-center px-3">
+      <div className="max-w-[1600px] flex-1 flex flex-row items-center px-3">
         <div className="flex-1">
           <h1 className="text-xl text-white hover:text-lava-red transition w-fit hover:scale-105">
             <a href="#home" onClick={handleClick}>
