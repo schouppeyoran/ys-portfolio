@@ -4,40 +4,12 @@ import React, { useState, useEffect, useRef } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useSelector } from 'react-redux'
 
 // Import Swiper styles
 import 'swiper/css/bundle'
 
 const portfolioItems = [
-  {
-    title: 'Gianni DM',
-    description:
-      'Gianni is a talented video editor & content manager, and a dear friend of mine. He needed a website to showcase his work to potential clients, and present them ways through which they can contact him. I built this website using barebones React. This was my first real-world experience designing and developing a website for a client.',
-    link: 'https://giannidm.com',
-    images: [
-      '/assets/portfolioItems/giannidm/1.png',
-      '/assets/portfolioItems/giannidm/2.png',
-      '/assets/portfolioItems/giannidm/3.png',
-    ],
-    techStack: [
-      {
-        name: 'HTML5',
-        icon: '/assets/icons/html5.svg',
-      },
-      {
-        name: 'CSS3',
-        icon: '/assets/icons/css3.svg',
-      },
-      {
-        name: 'React',
-        icon: '/assets/icons/react.svg',
-      },
-      {
-        name: 'Figma',
-        icon: '/assets/icons/figma.svg',
-      },
-    ],
-  },
   {
     title: 'drFloorPlan',
     description:
@@ -86,6 +58,7 @@ const portfolioItems = [
 ]
 
 const Portfolio = () => {
+  const webUtils = useSelector((state: any) => state.webUtils)
   const [currentItem, setCurrentItem] = useState(0)
   const [isDesktop, setIsDesktop] = useState(false)
   const [mobileInterfaceToggle, setMobileInterfaceToggle] = useState(false)
@@ -146,38 +119,42 @@ const Portfolio = () => {
             onSwiper={swiper => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}
           >
-            {portfolioItems[currentItem].images.map((image, index) => (
-              <SwiperSlide key={index}>
-                <img
-                  src={image}
-                  alt={`Slide ${index}`}
-                  className="object-contain w-[95%] max-h-[30vh] 2xl:max-h-[55vh] mx-auto mt-4 select-none mb-8"
-                />
-              </SwiperSlide>
-            ))}
+            {webUtils.data.portfolio.items[currentItem].images.map(
+              (image: any, index: number) => (
+                <SwiperSlide key={index}>
+                  <img
+                    src={image}
+                    alt={`Slide ${index}`}
+                    className="object-contain w-[95%] max-h-[30vh] 2xl:max-h-[55vh] mx-auto mt-4 select-none mb-8"
+                  />
+                </SwiperSlide>
+              ),
+            )}
           </Swiper>
           <div className="hidden flex-row flex-wrap w-full items-center justify-start gap-4 px-4 py-2 2xl:flex bg-rock/20 border-t-2 border-rock">
             <h1 className="text-2xl">Tech stack:</h1>
-            {portfolioItems[currentItem].techStack.map((tech, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center justify-center mx-2"
-              >
-                <img
-                  src={tech.icon}
-                  alt={tech.name}
-                  className="w-12 h-12 hover:scale-105 transition"
-                />
-                <p className="text-center text-sm">{tech.name}</p>
-              </div>
-            ))}
+            {webUtils.data.portfolio.items[currentItem].techStack.map(
+              (tech: any, index: number) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center justify-center mx-2"
+                >
+                  <img
+                    src={tech.icon}
+                    alt={tech.label}
+                    className="w-12 h-12 hover:scale-105 transition"
+                  />
+                  <p className="text-center text-sm">{tech.name}</p>
+                </div>
+              ),
+            )}
           </div>
         </div>
         <div className="hidden 2xl:flex flex-col items-center px-4 py-2 w-[25%] bg-rock/20 border-l-2 border-rock text-center 2xl:border-r-2 2xl:border-r-ironstone">
           <h1 className="text-2xl text-pale-carmine">Description</h1>
-          <p>{portfolioItems[currentItem].description}</p>
+          <p>{webUtils.data.portfolio.items[currentItem].description}</p>
           <a
-            href={portfolioItems[currentItem].link}
+            href={webUtils.data.portfolio.items[currentItem].link}
             className="py-2 px-4 bg-pale-carmine rounded text-xl mt-auto hover:scale-105 transition hover:bg-lava-red"
             target="_blank"
           >
@@ -188,19 +165,21 @@ const Portfolio = () => {
       <div className="w-full h-[20vh] bg-woodsmoke/50 border-t-2 border-b-2 border-pale-carmine px-2 pt-2 pb-4 overflow-y-scroll 2xl:hidden">
         {mobileInterfaceToggle ? (
           <div className="flex flex-row flex-wrap w-full items-start justify-center">
-            {portfolioItems[currentItem].techStack.map((tech, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center justify-center mx-2"
-              >
-                <img src={tech.icon} alt={tech.name} className="w-12 h-12" />
-                <p className="text-center">{tech.name}</p>
-              </div>
-            ))}
+            {webUtils.data.portfolio.items[currentItem].techStack.map(
+              (tech: any, index: number) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center justify-center mx-2"
+                >
+                  <img src={tech.icon} alt={tech.name} className="w-12 h-12" />
+                  <p className="text-center">{tech.name}</p>
+                </div>
+              ),
+            )}
           </div>
         ) : (
           <p className="text-center">
-            {portfolioItems[currentItem].description}
+            {webUtils.data.portfolio.items[currentItem].description}
           </p>
         )}
       </div>
@@ -233,7 +212,9 @@ const Portfolio = () => {
         <button
           onClick={() =>
             setCurrentItem(
-              currentItem === 0 ? portfolioItems.length - 1 : currentItem - 1,
+              currentItem === 0
+                ? webUtils.data.portfolio.items.length - 1
+                : currentItem - 1,
             )
           }
           className="p-2"
@@ -241,15 +222,19 @@ const Portfolio = () => {
           <FaChevronLeft size={30} />
         </button>
         <div className="flex flex-col items-center">
-          <h2 className="2xl:text-2xl">{portfolioItems[currentItem].title}</h2>
+          <h2 className="2xl:text-2xl">
+            {webUtils.data.portfolio.items[currentItem].title}
+          </h2>
           <p>
-            {currentItem + 1}/{portfolioItems.length}
+            {currentItem + 1}/{webUtils.data.portfolio.items.length}
           </p>
         </div>
         <button
           onClick={() =>
             setCurrentItem(
-              currentItem === portfolioItems.length - 1 ? 0 : currentItem + 1,
+              currentItem === webUtils.data.portfolio.items.length - 1
+                ? 0
+                : currentItem + 1,
             )
           }
           className="p-2"

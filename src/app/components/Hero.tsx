@@ -59,7 +59,9 @@ const Hero = () => {
       {showCarousel ? (
         <DriftCarousel
           dataset={
-            mobileToggled ? DriftCarouselMobileItems : DriftCarouselWebItems
+            mobileToggled
+              ? webUtils.data.hero.images2
+              : webUtils.data.hero.images1
           }
           height={window.innerWidth > 1600 ? '50vh' : '40vh'}
         />
@@ -68,14 +70,16 @@ const Hero = () => {
       )}
       <div className="flex flex-row gap-2 text-4xl mb-3">
         <h1 className="heroAnimation1">{webUtils.data.hero.greeting1}</h1>
-        <h1 className="heroAnimation2">My name is...</h1>
+        <h1 className="heroAnimation2">{webUtils.data.hero.greeting2}</h1>
       </div>
       <div className="flex flex-col gap-2 items-center text-center heroAnimation3">
         <h1 className="text-6xl text-lava-red stroke-white stroke-1">
-          Yoran Schouppe
+          {webUtils.data.hero.name}
         </h1>
         <div className="flex flex-row gap-1 items-center">
-          <h1 className="text-xl text-ironstone">Front-end</h1>
+          <h1 className="text-xl text-ironstone">
+            {webUtils.data.hero.title1}
+          </h1>
           <div
             className="flex flex-row py-1 px-2 bg-white gap-1.5 text-xl rounded cursor-pointer select-none relative items-center"
             onClick={() => setMobileToggled(!mobileToggled)}
@@ -90,7 +94,7 @@ const Hero = () => {
               } transition-all duration-300`}
               ref={h1Ref1}
             >
-              Web
+              {webUtils.data.hero.toggle1}
             </h1>
             <h1
               className={` ${
@@ -98,10 +102,12 @@ const Hero = () => {
               } transition-all duration-300`}
               ref={h1Ref2}
             >
-              Mobile
+              {webUtils.data.hero.toggle2}
             </h1>
           </div>
-          <h1 className="text-xl text-ironstone">Developer / Designer</h1>
+          <h1 className="text-xl text-ironstone">
+            {webUtils.data.hero.title2}
+          </h1>
         </div>
       </div>
     </section>

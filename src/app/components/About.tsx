@@ -3,120 +3,10 @@
 import React, { useState } from 'react'
 import AboutBadge from './AboutBadge'
 import { CardContainer } from './3d-card'
-
-const aboutSections = [
-  {
-    title: 'Personalia',
-    image: '/assets/personaliaBadgeTest.png',
-    text: 'I am a 21 year old software developer from Aalst, Belgium. I am currently working as a front-end engineer & designer at DR Gaming Technology, as well as my own personal projects.',
-  },
-  {
-    title: 'Professional Philosophy',
-    image: '/assets/professionalPhilosophyBadgeTest.png',
-    text: 'I enjoy a good challenge. I enjoy being given a task that seems way out of my league, and then figuring out how to do it anyways. I believe that is the one true best way to learn. I am a good collaborator and I enjoy working in a team, but I also enjoy working on my own. I am a fast learner and I am always looking to improve my skills.',
-  },
-  {
-    title: 'High-End User Experiences',
-    image: '/assets/experiencesBadgeTest.png',
-    text: "I strive to always create the fanciest, most sophisticated, high-end interfaces I can possibly think of for my users. I believe that the user experience is the most important part of any application, so I employ a methodical approach to designing and developing my applications. I always try to put myself in the user's shoes, and I always try to think of the most intuitive way to do something.",
-  },
-]
-
-const skills = [
-  {
-    title: 'Technologies',
-    items: [
-      {
-        icon: '/assets/icons/html5.svg',
-        title: 'HTML5',
-      },
-      {
-        icon: '/assets/icons/css3.svg',
-        title: 'CSS3',
-      },
-      {
-        icon: '/assets/icons/javascript.svg',
-        title: 'JavaScript',
-      },
-      {
-        icon: '/assets/icons/typescript.svg',
-        title: 'TypeScript',
-      },
-      {
-        icon: '/assets/icons/react.svg',
-        title: 'React',
-      },
-      {
-        icon: '/assets/icons/react.svg',
-        title: 'React Native',
-      },
-      {
-        icon: '/assets/icons/nextjs.svg',
-        title: 'Next.js',
-      },
-      {
-        icon: '/assets/icons/tailwindcss.svg',
-        title: 'Tailwind CSS',
-      },
-      {
-        icon: '/assets/icons/redux.svg',
-        title: 'Redux',
-      },
-      {
-        icon: '/assets/icons/nodejs.svg',
-        title: 'Node.js',
-      },
-    ],
-  },
-  {
-    title: 'Design',
-    items: [
-      {
-        icon: '/assets/icons/figma.svg',
-        title: 'Figma',
-      },
-      {
-        icon: '/assets/icons/blender.svg',
-        title: 'Blender',
-      },
-      {
-        icon: '/assets/icons/photoshop.svg',
-        title: 'Photoshop',
-      },
-      {
-        icon: '/assets/icons/premierepro.svg',
-        title: 'Premiere Pro',
-      },
-    ],
-  },
-  {
-    title: 'Work management',
-    items: [
-      {
-        icon: '/assets/icons/git.svg',
-        title: 'Git',
-      },
-      {
-        icon: '/assets/icons/github.svg',
-        title: 'GitHub',
-      },
-      {
-        icon: '/assets/icons/jira.svg',
-        title: 'Jira',
-      },
-      {
-        icon: '/assets/icons/confluence.svg',
-        title: 'Confluence',
-      },
-      {
-        icon: '/assets/icons/clockify.svg',
-        title: 'Clockify',
-      },
-    ],
-  },
-]
+import { useSelector } from 'react-redux'
 
 const About = () => {
+  const webUtils = useSelector((state: any) => state.webUtils)
   const [selectedAboutSection, setSelectedAboutSection] = useState(0)
 
   return (
@@ -125,7 +15,7 @@ const About = () => {
       className="w-screen max-w-[1600px] flex flex-col items-center justify-center px-4 pt-0 py-10 pt-16 md:pt-24"
     >
       <div className="max-w-[1600px] flex flex-col items-center justify-center md:flex-row md:gap-4 md:items-stretch mb-12 md:mb-0 2xl:gap-8 2xl:mb-16">
-        {aboutSections.map((section, index) => (
+        {webUtils.data.about.sections.map((section: any, index: number) => (
           <CardContainer
             className={`flex flex-col items-center justify-center mb-6 md:mb-0 max-w-[1600px] w-[100%] md:justify-start md:cursor-pointer md:py-3 ${
               selectedAboutSection === index && 'md:bg-white/10 md:rounded-t-lg'
@@ -134,7 +24,7 @@ const About = () => {
             onClick={() => setSelectedAboutSection(index)}
           >
             <img
-              src={section.image}
+              src={section.img}
               alt=""
               className={`transition hover:scale-110 duration-500`}
             />
@@ -147,7 +37,7 @@ const About = () => {
               {section.title}
             </h1>
             <p className="text-center mb-8 md:hidden 2xl:block">
-              {section.text}
+              {section.description}
             </p>
           </CardContainer>
         ))}
@@ -156,17 +46,17 @@ const About = () => {
         className={`hidden md:flex items-center justify-center min-h-[180px] transition py-2 px-6 mb-12 text-center bg-white/10 rounded-xl text-lg ${
           selectedAboutSection === 0
             ? 'rounded-tl-none'
-            : selectedAboutSection === aboutSections.length - 1
+            : selectedAboutSection === webUtils.data.about.sections.length - 1
             ? 'rounded-tr-none'
             : null
         } 2xl:hidden`}
       >
         <p className="text-center max-w-[60%]">
-          {aboutSections[selectedAboutSection].text}
+          {webUtils.data.about.sections[selectedAboutSection].description}
         </p>
       </div>
       <div className="w-full flex flex-col 2xl:flex-row 2xl:gap-8">
-        {skills.map((skill, index) => (
+        {webUtils.data.about.skills.map((skill: any, index: number) => (
           <div className="flex flex-col w-[100%] mb-8" key={index}>
             <div className="flex flex-row items-center justify-center w-[100%] border-b-2 border-pale-carmine relative mb-2">
               <div className="max-w-[1600px] flex-1 flex flex-row items-end justify-between">
@@ -183,14 +73,14 @@ const About = () => {
               </div>
             </div>
             <div className="flex flex-row flex-wrap justify-evenly gap-4 max-w-[1600px] w-[100%] mx-auto">
-              {skill.items.map((item, index) => (
+              {skill.items.map((item: any, index: number) => (
                 <div className="flex flex-col items-center gap-2" key={index}>
                   <img
                     src={item.icon}
                     alt=""
                     className="w-16 h-16 md:w-24 md:h-24 transition hover:scale-110 duration-500"
                   />
-                  <h2 className="text-center">{item.title}</h2>
+                  <h2 className="text-center">{item.label}</h2>
                 </div>
               ))}
             </div>
