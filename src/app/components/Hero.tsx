@@ -1,12 +1,15 @@
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import DriftCarousel from './DriftCarousel'
 import { DriftCarouselWebItems } from '@/config/DriftCarouselWebItems'
 import { DriftCarouselMobileItems } from '@/config/DriftCarouselMobileItems'
 import { WavyBackground } from './wavy-background'
 
 const Hero = () => {
+  const webUtils = useSelector((state: any) => state.webUtils)
+
   // ----- TOGGLE BETWEEN WEB AND MOBILE LOGIC -----
   // mobileToggled state to toggle between web and mobile in the hero
   // I used a boolean for this because it's a simple toggle and it allows me to use !mobileToggled to toggle between web and mobile
@@ -64,7 +67,7 @@ const Hero = () => {
         <div className="h-[40vh] w-screen mb-12 mt-[-10vh]"></div>
       )}
       <div className="flex flex-row gap-2 text-4xl mb-3">
-        <h1 className="heroAnimation1">Hi!</h1>
+        <h1 className="heroAnimation1">{webUtils.data.hero.greeting1}</h1>
         <h1 className="heroAnimation2">My name is...</h1>
       </div>
       <div className="flex flex-col gap-2 items-center text-center heroAnimation3">

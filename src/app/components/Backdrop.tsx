@@ -1,7 +1,10 @@
 'use client'
 
 import React, { useEffect, useState, useRef, ReactNode } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { startFluidSimulation } from './fluidSimulation'
+
+import { fetchDocuments } from '../firebaseOperations'
 
 interface BackdropProps {
   children: ReactNode
@@ -9,6 +12,9 @@ interface BackdropProps {
 
 const Backdrop: React.FC<BackdropProps> = ({ children }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const dispatch = useDispatch()
+  const webUtils = useSelector((state: any) => state.webUtils)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -19,7 +25,24 @@ const Backdrop: React.FC<BackdropProps> = ({ children }) => {
     }
   }, [])
 
+  useEffect(() => {
+    const fetchAndSetDocuments = async () => {
+      const docs = await fetchDocuments('yoranschouppe')
+      dispatch({ type: 'SET_DATA', payload: docs })
+      setLoading(false)
+    }
+    fetchAndSetDocuments()
+  }, [dispatch])
+
   const [documentHeight, setDocumentHeight] = useState('100%')
+
+  if (loading) {
+    return (
+      <div className="w-screen h-screen flex justify-center items-center text-4xl font-bold text-dark">
+        Loading...
+      </div>
+    )
+  }
 
   return (
     <main className="flex flex-col items-center overflow-hidden gap-4">
